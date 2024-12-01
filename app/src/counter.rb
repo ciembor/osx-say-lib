@@ -5,14 +5,14 @@ class Counter
     @speaker = Speaker.new
   end
 
-  def countup(times:, delay:, modulo: nil, final: nil)
+  def countup(times:, delay: 1, modulo: nil, final: nil)
     (1..times).each do |i|
       speaker.say_async(i) if modulo.nil? || (i % modulo).zero? || times - i < final.to_i || i == 1
       sleep(delay)
     end
   end
 
-  def countdown(times:, delay:, modulo: nil, final: nil)
+  def countdown(times:, delay: 1, modulo: nil, final: nil)
     times.downto(1).each do |i|
       speaker.say_async(i) if modulo.nil? || (i % modulo).zero? || i <= final.to_i
       sleep(delay)

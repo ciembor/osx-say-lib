@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'loop'
+require 'wassist/loop'
 
-RSpec.describe Loop do
-  let(:speaker) { instance_double('Speaker') }
+RSpec.describe Wassist::Loop do
+  let(:speaker) { instance_double('Wassist::Speaker') }
   let(:loop_instance) { described_class.new }
 
   before do
-    allow(Speaker).to receive(:new).and_return(speaker)
+    allow(Wassist::Speaker).to receive(:new).and_return(speaker)
     allow(speaker).to receive(:say)
   end
 

@@ -1,17 +1,16 @@
 # frozen_string_literal: true
 
-require 'rspec'
-require 'speaker'
-require 'counter'
+require 'wassist/counter'
+require 'wassist/speaker'
 
-RSpec.describe Counter do
-  let(:speaker) { instance_double(Speaker) }
+RSpec.describe Wassist::Counter do
+  let(:speaker) { instance_double(Wassist::Speaker) }
   let(:counter) { described_class.new }
 
   before do
-    allow(Speaker).to receive(:new).and_return(speaker)
+    allow(Wassist::Speaker).to receive(:new).and_return(speaker)
     allow(speaker).to receive(:say_async)
-    allow_any_instance_of(Counter).to receive(:sleep)
+    allow_any_instance_of(Wassist::Counter).to receive(:sleep)
   end
 
   describe '#countup' do
@@ -60,7 +59,7 @@ RSpec.describe Counter do
 
     context 'when delay is set' do
       it 'calls sleep with the correct delay' do
-        allow_any_instance_of(Counter).to receive(:sleep)
+        allow_any_instance_of(Wassist::Counter).to receive(:sleep)
 
         counter.countup(times: 3, delay: 0.5)
 
@@ -68,6 +67,7 @@ RSpec.describe Counter do
       end
     end
   end
+
   describe '#countdown' do
     context 'when no modulo or final is provided' do
       it 'calls speaker.say_async for all numbers in reverse range' do
@@ -113,7 +113,7 @@ RSpec.describe Counter do
 
     context 'when delay is set' do
       it 'calls sleep with the correct delay' do
-        allow_any_instance_of(Counter).to receive(:sleep)
+        allow_any_instance_of(Wassist::Counter).to receive(:sleep)
         counter.countdown(times: 3, delay: 0.5)
         expect(counter).to have_received(:sleep).with(0.5).exactly(3).times
       end

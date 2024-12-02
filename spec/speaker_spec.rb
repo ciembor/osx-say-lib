@@ -26,6 +26,34 @@ RSpec.describe Wassist::Speaker do
         speaker = described_class.new(voice: 'Karen')
         expect { speaker.say('') }.not_to raise_error
       end
+
+      context 'with delay' do
+        it 'raises an error if delay is negative' do
+          speaker = described_class.new
+          expect { speaker.say('Hello', -1) }.to raise_error(ArgumentError, /Invalid delay/)
+        end
+
+        it 'raises an error if delay is not a number' do
+          speaker = described_class.new
+          expect { speaker.say('Hello', 'invalid') }.to raise_error(ArgumentError, /Invalid delay/)
+        end
+
+        it 'does not raise errors when delay is zero' do
+          speaker = described_class.new
+          expect { speaker.say('Hello', 0) }.not_to raise_error
+        end
+
+        it 'introduces the correct delay after speaking' do
+          speaker = described_class.new
+          allow(speaker).to receive(:system).and_return(true)
+
+          start_time = Time.now
+          speaker.say('', 0.1)
+          end_time = Time.now
+
+          expect(end_time - start_time).to be_within(0.02).of(0.1)
+        end
+      end
     end
 
     describe '#say_async' do

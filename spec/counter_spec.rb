@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-require 'wassist/counter'
-require 'wassist/speaker'
+require 'osx_say_lib/counter'
+require 'osx_say_lib/speaker'
 
-RSpec.describe Wassist::Counter do
-  let(:speaker) { instance_double(Wassist::Speaker) }
+RSpec.describe OsxSayLib::Counter do
+  let(:speaker) { instance_double(OsxSayLib::Speaker) }
   let(:counter) { described_class.new }
 
   before do
-    allow(Wassist::Speaker).to receive(:new).and_return(speaker)
+    allow(OsxSayLib::Speaker).to receive(:new).and_return(speaker)
     allow(speaker).to receive(:say_async)
-    allow_any_instance_of(Wassist::Counter).to receive(:sleep)
+    allow_any_instance_of(OsxSayLib::Counter).to receive(:sleep)
   end
 
   describe '#countup' do
@@ -59,7 +59,7 @@ RSpec.describe Wassist::Counter do
 
     context 'when delay is set' do
       it 'calls sleep with the correct delay' do
-        allow_any_instance_of(Wassist::Counter).to receive(:sleep)
+        allow_any_instance_of(OsxSayLib::Counter).to receive(:sleep)
 
         counter.countup(times: 3, delay: 0.5)
 
@@ -113,7 +113,7 @@ RSpec.describe Wassist::Counter do
 
     context 'when delay is set' do
       it 'calls sleep with the correct delay' do
-        allow_any_instance_of(Wassist::Counter).to receive(:sleep)
+        allow_any_instance_of(OsxSayLib::Counter).to receive(:sleep)
         counter.countdown(times: 3, delay: 0.5)
         expect(counter).to have_received(:sleep).with(0.5).exactly(3).times
       end

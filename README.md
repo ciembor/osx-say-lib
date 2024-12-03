@@ -1,4 +1,4 @@
-# Wassist - Workout Assistant for OSX
+# osx-say-lib - macOS `say` library for text-to-speech functionality
 
 ## **Table of Contents**
 1. [Overview](#overview)
@@ -13,14 +13,14 @@
 ---
 
 ## **Overview**
-`Wassist` is a Ruby library designed to automate repetitive tasks such as counting up, counting down, or executing loops with text-to-speech functionality. It provides utilities for speaking messages using macOS's `say` command and managing delays between operations.
+`osx-say-lib` is a Ruby library designed to automate repetitive tasks such as counting up, counting down, or executing loops with text-to-speech functionality. It provides utilities for speaking messages using macOS's `say` command and managing delays between operations.
 
 ---
 
 ## **Installation**
-1. Add `Wassist` to your project:
+1. Add `osx-say-lib` to your project:
    ```ruby
-   gem 'wassist', path: '/path/to/wassist'
+   gem 'osx-say-lib', path: '/path/to/osx-say-lib'
    ```
 
 2. Install dependencies:
@@ -30,7 +30,7 @@
 
 3. Require the library in your Ruby script:
    ```ruby
-   require 'wassist'
+   require 'osx_say_lib'
    ```
 
 ---
@@ -113,27 +113,29 @@
 
 ### **Using Speaker**
 ```ruby
-speaker = Wassist::Speaker.new(voice: 'Samantha')
-speaker.say("Hello, world!", 2)       # Speak text with a 2-second delay after speaking
-speaker.say_async("Async message", 1) # Speak text asynchronously with a 1-second delay
+speaker = OsxSayLib::Speaker.new(voice: 'Samantha')
+speaker.say("Hello, world!", 2)    # Speak text with a 2-second delay after speaking
+speaker.say("Here we go!")         # Speak without delay
+speaker.say_async("Async message") # Speak text asynchronously
 ```
 
 ### **Using Counter**
 ```ruby
-counter = Wassist::Counter.new
-counter.countup(times: 10, delay: 1, modulo: 2) # Speak numbers divisible by 2 up to 10
-counter.countdown(times: 5, delay: 0.5)         # Count down from 5 with a 0.5-second delay
+counter = OsxSayLib::Counter.new
+counter.countdown(times: 10) # Count down from 10 to 1
+counter.countup(times: 60, modulo: 5) # Count up for one minute, say only every 5th number
+counter.countdown(times: 5, delay: 0.5, modulo: 5, final: 10) # Count down from 5 with a 0.5-second delay, say only every 5th number, but each number at the end from 10 to 1
 ```
 
 ### **Using Loop**
 ```ruby
-looper = Wassist::Loop.new
+looper = OsxSayLib::Loop.new
 looper.run(
-  sentences: ["Push-up!", "Rest!"],
+  sentences: ["Push-up!", "Rest"],
   inner_delay: 2,
   outer_delay: 5,
-  times: 3
-) # Speak "Push-up!" and "Rest!" with 2 seconds between them, repeat 3 times with a 5-second break between iterations
+  times: 10
+) # Speak "Push-up!" and "Rest" with 2 seconds between them, repeat 10 times with a 5-second break between iterations
 ```
 
 ---

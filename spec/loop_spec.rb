@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'wassist/loop'
+require 'osx_say_lib/loop'
 
-RSpec.describe Wassist::Loop do
-  let(:speaker) { instance_double('Wassist::Speaker') }
+RSpec.describe OsxSayLib::Loop do
+  let(:speaker) { instance_double('OsxSayLib::Speaker') }
   let(:loop_instance) { described_class.new }
 
   before do
-    allow(Wassist::Speaker).to receive(:new).and_return(speaker)
+    allow(OsxSayLib::Speaker).to receive(:new).and_return(speaker)
     allow(speaker).to receive(:say)
   end
 

@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-require 'wassist/speaker'
+require 'osx_say_lib/speaker'
 
-RSpec.describe Wassist::Speaker do
+RSpec.describe OsxSayLib::Speaker do
   describe '.available?' do
     it 'returns true if the say command is available' do
-      expect(Wassist::Speaker.available?).to eq(true).or eq(false)
+      expect(OsxSayLib::Speaker.available?).to eq(true).or eq(false)
     end
   end
 
   context 'when say is available' do
     before do
-      skip "Command 'say' not available on this system" unless Wassist::Speaker.available?
+      skip "Command 'say' not available on this system" unless OsxSayLib::Speaker.available?
     end
 
     describe '#say' do

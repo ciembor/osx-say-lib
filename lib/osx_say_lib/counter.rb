@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Wassist
+module OsxSayLib
   class Counter
     def initialize
       @speaker = Speaker.new

@@ -10,6 +10,6 @@ group :development do
 end
 
 group :test, :development do
-  gem 'rspec', '~> 3.13'
   gem 'pry', '~> 0.15.0'
+  gem 'rspec', '~> 3.13'
 end

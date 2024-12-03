@@ -10,14 +10,16 @@ module OsxSayLib
       system('which say > /dev/null 2>&1')
     end
 
-
     def say(text, delay = 0)
-      raise ArgumentError, "Invalid delay: #{delay}. Delay must be a non-negative number." unless delay.is_a?(Numeric) && delay >= 0
+      unless delay.is_a?(Numeric) && delay >= 0
+        raise ArgumentError,
+              "Invalid delay: #{delay}. Delay must be a non-negative number."
+      end
       raise "Command 'say' not available on this system" unless self.class.available?
 
       command = "say -v #{@voice} \"#{text}\""
       system(command)
-      sleep(delay) if delay > 0
+      sleep(delay) if delay.positive?
     end
 
     def say_async(text)

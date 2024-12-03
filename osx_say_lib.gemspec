@@ -2,13 +2,13 @@
 Gem::Specification.new do |spec|
   spec.name          = "osx_say_lib"
   spec.version       = "0.1.0"
-  spec.authors       = ["Your Name"]
-  spec.email         = ["your.email@example.com"]
+  spec.authors       = ["Maciej Ciemborowicz"]
+  spec.email         = ["maciej.ciemborowicz@gmail.com"]
 
   spec.summary       = "A macOS text-to-speech library using `say` command."
   spec.description   = "Automates repetitive tasks with text-to-speech functionality leveraging macOS's `say` command."
-  spec.homepage      = "https://github.com/yourusername/osx_say_lib"
-  spec.license       = "MIT"
+  spec.homepage      = "https://github.com/ciembor/osx_say_lib"
+  spec.license       = "GPL-3.0"
 
   spec.files         = Dir["lib/**/*", "README.md", "LICENSE"]
   spec.require_paths = ["lib"]
